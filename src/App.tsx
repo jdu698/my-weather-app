@@ -2,28 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import purple from '@material-ui/core/colors/purple';
 
-const styles = theme => ({
-  progress: {
-    margin: theme.spacing.unit * 2,
-  },
-});
+import Dropzone from 'react-dropzone'
 
-function CircularIndeterminate(props) {
-  const { classes } = props;
-  return (
-    <div>
-      <CircularProgress className={classes.progress} />
-      <CircularProgress className={classes.progress} size={50} />
-      <CircularProgress className={classes.progress} color="secondary" />
-      <CircularProgress className={classes.progress} style={{ color: purple[500] }} thickness={7} />
+import './App.css';
+
+
+    <div className="container-fluid">
+      <div className="centreText">
+        <div className="dropZone">
+          <Dropzone onDrop={this.state.dropzone} style={{position: "relative"}}>
+            <div style={{height: '50vh'}}>
+              {
+                this.state.imageFiles.length > 0 ? 
+                  <div>{this.state.imageFiles.map((file) => <img className="image" key={file.name} src={file.preview} /> )}</div> :
+                  <p>Try dropping some files here, or click to select files to upload.</p>
+              }  
+            </div>
+          </Dropzone>
+        </div>
+        <div  className="dank">
+        {
+          this.state.results === "" && this.state.imageFiles.length > 0 ?
+          <CircularProgress thickness={3} />:
+          <p>{this.state.results}</p>
+        }
+        </div>
+      </div>
     </div>
-  );
-}
-
-CircularIndeterminate.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CircularIndeterminate);
