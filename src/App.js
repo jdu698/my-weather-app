@@ -3,6 +3,7 @@ import React from "react";
 import Titles from "./components/Titles";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
+import SimpleModalWrapped from "./components/Modal"
 
 const API_KEY = "42813b0386cf5a01d01cfa88bd3fe164";
 
@@ -41,6 +42,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div><SimpleModalWrapped></SimpleModalWrapped></div>
         <div className="wrapper">
           <div className="main">
             <div className="container">
